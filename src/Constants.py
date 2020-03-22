@@ -1,5 +1,6 @@
 PLATFORM_PI = False
 PRINT_TO_TERMINAL = True
+BALL_RANDOM_SPEED = True
 BALL_SPIN = False
 LEDS_USED = True
 AUTO_CONTROL_RIGHT = False
@@ -8,9 +9,11 @@ PADDLE_STICKINESS = 1.0 # Percentage of paddle velocity added to the ball on a c
 PLAYER_START_SCORE = 99
 MAX_SCORE = 102
 
+
 class Side:
     LEFT = 0
     RIGHT = 1
+
 
 COLOURS = {
     "background" :  "0m",
