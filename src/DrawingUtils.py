@@ -1,17 +1,21 @@
 import numpy as np
-from Constants import *
+
 
 def cursorResetCode():
     return "\033[2J\033[1;1H"
 
+
 def cursorVisibiltyCode(isHidden):
     return "\033[?25" + ("h" if isHidden else "l")
+
 
 def colourChangeCode(colour):
     return "\033[" + colour
 
+
 def colourResetCode():
     return "\033[0m"
+
 
 def moveCursorCode(pos_xy, windowDims):
     for i in range(0, 2):

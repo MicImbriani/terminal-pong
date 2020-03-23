@@ -1,13 +1,16 @@
 from DrawingUtils import *
-from Constants import COLOURS
+from Colours import COLOURS
+
 
 class Screen:
+
 
     def __init__(self, dims):
         self._dimensions = dims
         self._size = (dims[0] * dims[1])
         self._oldPixels = set()
         self._newPixels = set()
+
 
     def setColourIdxAt(self, colourIdx, pos_xy):
         OUT_OF_BOUNDS_WARNING = False
@@ -19,8 +22,14 @@ class Screen:
         else:
             self._newPixels.add(tuple([tuple(pos_xy), colourIdx]))
 
+
+    def _checkInRange(self, pos_xy):
+        return pos_xy[0] >= 0 and pos_xy[0] < self._dimensions[0] and pos_xy[1] >= 0 and pos_xy[1] < self._dimensions[1]
+
+
     def clear(self):
         self._newPixels.clear()
+
 
     def getOutputString(self):
         # Build the string that removes all old data
@@ -49,11 +58,11 @@ class Screen:
 
         return output
 
+
     def swapBuffers(self):
         self._oldPixels = self._newPixels.copy()
 
-    def getSize(self):
-        return self._size
 
-    def _checkInRange(self, pos_xy):
-        return pos_xy[0] >= 0 and pos_xy[0] < self._dimensions[0] and pos_xy[1] >= 0 and pos_xy[1] < self._dimensions[1]
+    #@property
+    #def size(self):
+    #    return self._size
