@@ -59,7 +59,7 @@ class Paddle:
             self._size_boost._activation_count += 1
 
 
-    def setVerticalPos(self, vertical_pos, win_height):
+    def set_vertical_pos(self, vertical_pos, win_height):
         # Vertically clamp the paddle within the window
         new_vertical_pos = vertical_pos
 
@@ -73,7 +73,7 @@ class Paddle:
         self._pos[1] = new_vertical_pos
 
 
-    def isSizeBoostActive(self):
+    def is_size_boost_active(self):
         return self._vertical_vel._active
 
 
@@ -83,12 +83,12 @@ class Paddle:
 
 
     @property
-    def lastPosition(self):
+    def last_position(self):
         return self._last_position
 
 
     @property
-    def verticalVelocity(self):
+    def vertical_velocity(self):
         return self._vertical_vel
 
 
@@ -104,5 +104,5 @@ class Paddle:
 
 
     @property
-    def lastSize(self):
+    def last_size(self):
         return self._last_size

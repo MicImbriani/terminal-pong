@@ -12,51 +12,51 @@ class Ball:
     MAX_SPEED = 60
 
 
-    def __init__(self, dimsX):
-        self._position = np.array([float(dimsX) / 2, 0.0], dtype=float)
-        self._lastPosition = self._position
+    def __init__(self, dims_x):
+        self._position = np.array([float(dims_x) / 2, 0.0], dtype=float)
+        self._last_position = self._position
         self._velocity = np.array([0.0, 0.0], dtype=float)
-        self._collidingWithSideWall = False
-        self._wallCollisionSide = Side.LEFT
+        self._colliding_with_side_wall = False
+        self._wall_collision_side = Side.LEFT
 
 
-    def update(self, winDims, paddles, dt):
-        self._updatePosition(dt)
-        self._handleCollision(paddles, winDims)
-        self._clampSpeedBelowMaximum()
+    def update(self, win_dims, paddles, dt):
+        self._update_position(dt)
+        self._handle_collision(paddles, win_dims)
+        self._clamp_speed_below_maximum()
 
 
-    def _updatePosition(self, dt):
+    def _update_position(self, dt):
         self._lastPos = np.array(self._position)
         self._position[0] += self._velocity[0] * dt
         self._position[1] += (self._velocity[1] * dt) / 2
 
 
-    def _handleCollision(self, paddles, winDims):
-        self._handleWallCollision(winDims)
-        self._handlePaddleCollision(paddles)
+    def _handle_collision(self, paddles, win_dims):
+        self._handle_wall_collision(win_dims)
+        self._handle_paddle_collision(paddles)
 
 
-    def _handleWallCollision(self, winDims):
-        self._collidingWithWall = False
+    def _handle_wall_collision(self, win_dims):
+        self._colliding_with_wall = False
 
         # Left
         if(self._position[0] < 0):
             self._position[0] = 0
             self._velocity = np.array([0.0, 0.0])
-            self._collisionSide = Side.LEFT
+            self._collision_side = Side.LEFT
 
             if(self._lastPos[0] >= 0):
-                self._collidingWithWall = True
+                self._colliding_with_wall = True
 
         # Right
-        elif(self._position[0] > winDims[0] - 1):
-            self._position[0] = winDims[0] - 1
+        elif(self._position[0] > win_dims[0] - 1):
+            self._position[0] = win_dims[0] - 1
             self._velocity = np.array([0.0, 0.0])
-            self._collisionSide = Side.RIGHT
+            self._collision_side = Side.RIGHT
 
-            if(self._lastPos[0] <= winDims[0] - 1):
-                self._collidingWithWall = True
+            if(self._lastPos[0] <= win_dims[0] - 1):
+                self._colliding_with_wall = True
 
         # Bottom
         if(self._position[1] < 0):
@@ -64,80 +64,80 @@ class Ball:
             self._velocity[1] *= -1
         
         # Top
-        elif(self._position[1] > winDims[1] - 1):
-            self._position[1] = winDims[1] - 1
+        elif(self._position[1] > win_dims[1] - 1):
+            self._position[1] = win_dims[1] - 1
             self._velocity[1] *= -1
 
 
-    def _handlePaddleCollision(self, paddles):
+    def _handle_paddle_collision(self, paddles):
         # Get position and size information for the paddles
-        p1Pos = paddles[0].position
-        p1HalfSize = paddles[0].size / 2
-        p2Pos = paddles[1].position
-        p2HalfSize = paddles[1].size / 2
+        p1_pos = paddles[0].position
+        p1_half_size = paddles[0].size / 2
+        p2_pos = paddles[1].position
+        p2_half_size = paddles[1].size / 2
 
         # Determine whether the ball is colliding with the right or left paddles
-        leftCollision = self._position[0] < p1Pos[0] and self._position[1] <= p1Pos[1] + p1HalfSize and self._position[1] >= p1Pos[1] - p1HalfSize 
-        rightCollision = self._position[0] > p2Pos[0] and self._position[1] <= p2Pos[1] + p2HalfSize and self._position[1] >= p2Pos[1]- p2HalfSize
+        left_collision = self._position[0] < p1_pos[0] and self._position[1] <= p1_pos[1] + p1_half_size and self._position[1] >= p1_pos[1] - p1_half_size 
+        right_collision = self._position[0] > p2_pos[0] and self._position[1] <= p2_pos[1] + p2_half_size and self._position[1] >= p2_pos[1]- p2_half_size
 
         # Update the state of the ball after a collision
-        collidingPaddle = paddles[0]
+        colliding_paddle = paddles[0]
 
-        if(leftCollision):
-            self._position[0] = p1Pos[0]
+        if(left_collision):
+            self._position[0] = p1_pos[0]
             self._velocity[0] *= -1
-        elif(rightCollision):
-            self._position[0] = p2Pos[0]
+        elif(right_collision):
+            self._position[0] = p2_pos[0]
             self._velocity[0] *= -1
-            collidingPaddle = paddles[1]
+            colliding_paddle = paddles[1]
 
         # Adds some interesting spin effects to the ball after a collision
-        if(leftCollision or rightCollision):
-            self._updateVerticalVelAfterPaddleCollision()
+        if(left_collision or right_collision):
+            self._update_vertical_vel_after_paddle_collision()
 
 
-    def _updateVerticalVelAfterPaddleCollision(self):
+    def _update_vertical_vel_after_paddle_collision(self):
         # Inherit some of the paddle's vertical velocity allowing for 'chop' effects
         if(SPIN_AFTER_COLLISION):
-            self._velocity[1] += collidingPaddle.getVerticalVel() * PADDLE_STICKINESS
+            self._velocity[1] += colliding_paddle.get_vertical_vel() * PADDLE_STICKINESS
 
         # Applys a random speed to the ball
         if(RANDOM_SPEED_AFTER_COLLISION):
-            velNorm = self._calcNormVel()
-            randomSpeed = random.uniform(Ball.MAX_SPEED * 0.5, Ball.MAX_SPEED * 0.8)
-            self._velocity = velNorm * randomSpeed
+            vel_norm = self._calc_norm_vel()
+            random_speed = random.uniform(Ball.MAX_SPEED * 0.5, Ball.MAX_SPEED * 0.8)
+            self._velocity = vel_norm * random_speed
 
 
-    def _calcNormVel(self):
-        speed = self._calcSpeed()
+    def _calc_norm_vel(self):
+        speed = self._calc_speed()
         return self._velocity * 1.0 / speed
 
 
-    def _calcSpeed(self):
+    def _calc_speed(self):
         speed = math.sqrt(math.pow(self._velocity[0], 2) + math.pow(self._velocity[1], 2))
         return speed
 
 
-    def _clampSpeedBelowMaximum(self):
+    def _clamp_speed_below_maximum(self):
         # Normalises velocity vector and scales to match maximum speed if MAX_BALL_SPEED is exceeded
-        speed = self._calcSpeed()
+        speed = self._calc_speed()
         if(speed > Ball.MAX_SPEED):
             self._velocity *= Ball.MAX_SPEED / speed
 
 
     @property
-    def collidingWithSideWall(self):
-        return self._collidingWithSideWall
+    def colliding_with_side_wall(self):
+        return self._colliding_with_side_wall
 
 
     @property
-    def wallCollisionSide(self):
-        return int(self._wallCollisionSide)
+    def wall_collision_side(self):
+        return int(self._wall_collision_side)
 
 
     @property
-    def lastPosition(self):
-        return self._lastPosition
+    def last_position(self):
+        return self._last_position
 
 
     @property
@@ -147,7 +147,7 @@ class Ball:
 
     @position.setter
     def position(self, pos):
-        self._lastPosition = np.array(self._position)
+        self._last_position = np.array(self._position)
         self._position = np.array(pos)
 
 

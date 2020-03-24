@@ -29,23 +29,23 @@ class Pong:
     def __init__(self):
         self._dt = 0.0
         self._time_s = 0.0
-        self._gameWon = False
-        self._gameWonTime_s = 0.0
+        self._game_won = False
+        self._game_won_time_s = 0.0
 
         if(PLATFORM_PI):
-            self._controllerInterface = HardwareControllerInterface()
+            self._controller_interface = HardwareControllerInterface()
         else:
-            self._controllerInterface = VirtualControllerInterface()
+            self._controller_interface = VirtualControllerInterface()
 
         self._display = Display()
-        dims = self._display.windowDims
-        self._player1 = Player(Side.LEFT, dims)
-        self._player2 = Player(Side.RIGHT, dims)
+        dims = self._display.window_dims
+        self._player_1 = Player(Side.LEFT, dims)
+        self._player_2 = Player(Side.RIGHT, dims)
         self._ball = Ball(dims[0] / 2)
 
-        self._serveCount = 0
-        self._servingPlayer = self._player1
-        self._winningPlayer = self._player1
+        self._serve_count = 0
+        self._serving_player = self._player_1
+        self._winning_player = self._player_1
 
 
     def run(self):
@@ -53,88 +53,92 @@ class Pong:
         running = True
 
         while(running):
-            gameShouldEnd = self._gameWon and (self._time_s > self._gameWonTime_s + Pong.DISPLAY_WINNER_DURATION)
+            game_should_end = self._game_won and (self._time_s > self._game_won_time_s + Pong.DISPLAY_WINNER_DURATION)
 
-            if(gameShouldEnd):
+            if(game_should_end):
                 running = False
 
-            frameStartTime = timer()
+            frame_start_time = timer()
 
-            self._handleInput()
-            self._update(self._display.windowDims)
+            self._handle_input()
+            self._update(self._display.window_dims)
             self._draw()
 
-            self._dt = (timer() - frameStartTime) * Pong.PHYSICS_SPEED
+            self._dt = (timer() - frame_start_time) * Pong.PHYSICS_SPEED
 
         self._shutdown()
 
 
     def _initialise(self):
-        self._servingPlayer.setAsServing()
+        self._serving_player.set_as_serving()
 
 
-    def _handleInput(self):
-        self._controllerInterface.update(self._dt)
+    def _handle_input(self):
+        self._controller_interface.update(self._dt)
 
         # Player 1 controller
-        P1_dialRot_0_1 = self._controllerInterface.getDial1Pos()
-        P1_LButtonDown = self._controllerInterface.isCon1But1Down()
-        P1_RButtonDown = self._controllerInterface.isCon1But2Down()
-        self._player1.updateControllerState(P1_dialRot_0_1, P1_LButtonDown, P1_RButtonDown)
+        p1_dial_rot_0_1 = self._controller_interface.get_dial1_pos()
+        p1_l_button_down = self._controller_interface.is_con1_but1_down()
+        p1_r_button_down = self._controller_interface.is_con1_but2_down()
+        self._player_1.update_controller_state(p1_dial_rot_0_1, p1_l_button_down, p1_r_button_down)
 
         # Player 2 controller
-        P2_dialRot_0_1 = self._controllerInterface.getDial2Pos()
-        P2_LButtonDown = self._controllerInterface.isCon2But1Down()
-        P2_RButtonDown = self._controllerInterface.isCon2But2Down()
-        self._player2.updateControllerState(P2_dialRot_0_1, P2_LButtonDown, P2_RButtonDown)
+        p2_dial_rot_0_1 = self._controller_interface.get_dial2_pos()
+        p2_l_button_down = self._controller_interface.is_con2_but1_down()
+        p2_r_button_down = self._controller_interface.is_con2_but2_down()
+        self._player_2.update_controller_state(p2_dial_rot_0_1, p2_l_button_down, p2_r_button_down)
 
 
-    def _update(self, windowDims):
+    def _update(self, window_dims):
         self._time_s += self._dt
 
         # Update ball
-        paddles = [self._player1.paddle, self._player2.paddle]
-        self._ball.update(self._display.windowDims, paddles, self._dt)
+        paddles = [self._player_1.paddle, self._player_2.paddle]
+        self._ball.update(self._display.window_dims, paddles, self._dt)
 
         # Update players
-        self._player1.update(self._ball, windowDims[1], self._dt)
-        self._player2.update(self._ball, windowDims[1], self._dt)
+        self._player_1.update(self._ball, window_dims[1], self._dt)
+        self._player_2.update(self._ball, window_dims[1], self._dt)
 
         # Scoring
-        if(self._ball.collidingWithSideWall):
-            scoringPlayer = self._player1 if self._ball.wallCollisionSide == self._player2.side else self._player2
-            scoringPlayer.incrementScore()
-            self._serveCount += 1
-
-            # Serving
-            if(self._serveCount % 5 == 0):
-                self._servingPlayer = self._player1 if self._servingPlayer == self._player2 else self._player2
-
-            self._servingPlayer.setAsServing()
+        if(self._ball.colliding_with_side_wall):
+            self._updateScores()
 
         # Check for winner
-        if(not self._gameWon):
-            self._checkWinCondition()
+        if(not self._game_won):
+            self._check_win_condition()
 
         # Debug data to host console
         if(PLATFORM_PI and not PRINT_TO_TERMINAL):
-            self._printDebugInfo()
+            self._print_debug_info()
 
 
-    def _checkWinCondition(self):
-        self._gameWonTime_s = self._time_s
+    def _updateScores(self):
+        scoring_player = self._player_1 if self._ball.wall_collision_side == self._player_2.side else self._player_2
+        scoring_player.increment_score()
+        self._serve_count += 1
 
-        if(self._player1.score >= Pong.MAX_SCORE):
-            self._gameWon = True
-            self._winningPlayer = self._player1
+        # Serving
+        if(self._serve_count % 5 == 0):
+            self._serving_player = self._player_1 if self._serving_player == self._player_2 else self._player_2
+
+        self._serving_player.set_as_serving()
+
+
+    def _check_win_condition(self):
+        self._game_won_time_s = self._time_s
+
+        if(self._player_1.score >= Pong.MAX_SCORE):
+            self._game_won = True
+            self._winning_player = self._player_1
             return
 
-        if(self._player2.score >= Pong.MAX_SCORE):
-            self._gameWon = True
-            self._winningPlayer = self._player2
+        if(self._player_2.score >= Pong.MAX_SCORE):
+            self._game_won = True
+            self._winning_player = self._player_2
 
 
-    def _printDebugInfo(self):
+    def _print_debug_info(self):
         lines = [
             "Controller 1:",
             "   buttons:",
@@ -162,34 +166,34 @@ class Pong:
             "   vel: ------ [%.2f, %.2f]"
         ]
 
-        w = self._display.windowDims
+        w = self._display.window_dims
 
         output = "\033[2J"
 
-        for lineIdx in range(len(lines)):
-            output += moveCursorCode([1, lineIdx + 1], w) + lines[lineIdx]
+        for line_idx in range(len(lines)):
+            output += move_cursor_code([1, line_idx + 1], w) + lines[line_idx]
 
-        ballVel = self._ball.getVel()
-        paddles = [self._player1.paddle, self._player2.paddle]
-        controllers = [self._player1.controller, self._player2.controller]
+        ball_vel = self._ball.getVel()
+        paddles = [self._player_1.paddle, self._player_2.paddle]
+        controllers = [self._player_1.controller, self._player_2.controller]
 
         print(output % (
-            "DOWN" if controllers[0].isButtonDown(Side.LEFT) else "UP",
-            "DOWN" if controllers[0].isButtonDown(Side.RIGHT) else "UP",
-            controllers[0].getDialPosition_0_1(),
-            paddles[0].getPos()[1],
-            paddles[0].getVerticalVel(),
-            paddles[0].getSize(),
-            "DOUBLE" if paddles[0].isSizeBoostActive() else "NORMAL",
-            "DOWN" if controllers[1].isButtonDown(Side.LEFT) else "UP",
-            "DOWN" if controllers[1].isButtonDown(Side.RIGHT) else "UP",
-            self._controllerInterface.getDial2GPIOReading(),
-            paddles[1].getPos()[1],
-            paddles[1].getVerticalVel(),
-            paddles[1].getSize(),
-            "DOUBLE" if paddles[1].isSizeBoostActive() else "NORMAL",
+            "DOWN" if controllers[0].is_button_down(Side.LEFT) else "UP",
+            "DOWN" if controllers[0].is_button_down(Side.RIGHT) else "UP",
+            controllers[0].get_dial_position_0_1(),
+            paddles[0].get_pos()[1],
+            paddles[0].get_vertical_Vel(),
+            paddles[0].get_size(),
+            "DOUBLE" if paddles[0].is_size_boost_active() else "NORMAL",
+            "DOWN" if controllers[1].is_button_down(Side.LEFT) else "UP",
+            "DOWN" if controllers[1].is_button_down(Side.RIGHT) else "UP",
+            controllers[1].get_dial_position_0_1(),
+            paddles[1].get_pos()[1],
+            paddles[1].get_vertical_Vel(),
+            paddles[1].get_size(),
+            "DOUBLE" if paddles[1].is_size_boost_active() else "NORMAL",
             self._ball.pos[0], self._ball.pos[1],
-            ballVel[0], ballVel[1])
+            ball_vel[0], ball_vel[1])
         )
 
 
@@ -197,22 +201,22 @@ class Pong:
         # Terminal display
         self._display.begin()
 
-        dimsX = self._display.windowDims[0]
-        if(not self._gameWon):
-            self._display.drawNet()
-            self._display.drawScore(self._player2.score, [int(dimsX * 0.75), 4])
-            self._display.drawScore(self._player1.score, [int(dimsX * 0.25), 4])
-            self._display.drawPlayer(self._player1)
-            self._display.drawPlayer(self._player2)
-            self._display.drawBall(self._ball)
+        dims_x = self._display.window_dims[0]
+        if(not self._game_won):
+            self._display.draw_net()
+            self._display.draw_score(self._player_2.score, [int(dims_x * 0.75), 4])
+            self._display.draw_score(self._player_1.score, [int(dims_x * 0.25), 4])
+            self._display.draw_player(self._player_1)
+            self._display.draw_player(self._player_2)
+            self._display.draw_ball(self._ball)
         else:
-            self._display.drawWinScreen(self._winningPlayer)
+            self._display.draw_win_screen(self._winning_player)
 
         self._display.end()
 
         # LED displays
         if(PLATFORM_PI and LEDS_USED):
-            self._LEDDisplay.setLEDs(float(self._ball.pos[0] / dimsX))
+            self._led_display.set_leds(float(self._ball.pos[0] / dims_x))
 
 
     def _shutdown(self):
@@ -229,5 +233,5 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         pong.shutdown()
-        print(colourResetCode())
-        print(cursorVisibiltyCode())
+        print(colour_reset_code())
+        print(cursor_visibilty_code())

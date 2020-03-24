@@ -6,19 +6,19 @@ class Controller:
 
 
     def __init__(self):
-        self._dialPosition_0_1 = 0.5       # Position of the dial, between 0 and 1
-        self._buttonsDown = [False, False] # State of the two buttons
+        self._dial_position_0_1 = 0.5       # Position of the dial, between 0 and 1
+        self._buttons_down = [False, False] # State of the two buttons
 
 
-    def isButtonDown(self, side):
-        return self._buttonsDown[int(side)]
-
-
-    @property
-    def dialPosition_0_1(self):
-        return self._dialPosition_0_1
+    def is_button_down(self, side):
+        return self._buttons_down[int(side)]
 
 
     @property
-    def buttonsDown(self):
-        return self._buttonsDown
+    def dial_position_0_1(self):
+        return self._dial_position_0_1
+
+
+    @property
+    def buttons_down(self):
+        return self._buttons_down
