@@ -24,7 +24,7 @@ class Player:
 
         # Position paddle based on controller input
         paddleSize = self._paddle.size
-        newVertPos = (paddleSize / 2) + self._controller.getDialPosition_0_1() * (windowHeight - paddleSize)
+        newVertPos = (paddleSize / 2) + self._controller.dialPosition_0_1 * (windowHeight - paddleSize)
         self._paddle.setVerticalPos(newVertPos, windowHeight)
 
         # When serving, tie the ball's Y position to that of the paddle
@@ -35,12 +35,12 @@ class Player:
             ball.velocity = np.array([0, 0])
 
             # Release ball
-            if(self._controller.isButtonDown(Controller.Button.LEFT)):
+            if(self._controller.isButtonDown(Side.LEFT)):
                 self._isServing = False
                 ball.velocity = np.array([self._serveSpeed, self._paddle.verticalVelocity])
 
         # Paddle size boost
-        if(self._controller.isButtonDown(Controller.Button.RIGHT)):
+        if(self._controller.isButtonDown(Side.RIGHT)):
             self._paddle.activateDoubleSize()
 
 
@@ -49,16 +49,13 @@ class Player:
 
 
     def updateControllerState(self, dialPos_0_1, leftButtonDown, rightButtonDown):
-        self._controller.update(dialPos_0_1, leftButtonDown, rightButtonDown)
+        self._controller._dialPosition_0_1 = dialPos_0_1
+        self._controller._buttonsDown[int(Side.LEFT)] = leftButtonDown
+        self._controller._buttonsDown[int(Side.RIGHT)] = rightButtonDown
     
 
     def setAsServing(self):
         self._isServing = True
-
-
-    @property
-    def controller(self):
-        return self._controller
 
 
     @property

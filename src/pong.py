@@ -4,7 +4,12 @@ from timeit import default_timer as timer
 import numpy as np
 from Constants import *
 from Controller import Controller
-from hardware.ControllerInterface import ControllerInterface
+
+if(PLATFORM_PI):
+    from hardware.ControllerInterface import HardwareControllerInterface
+else:
+    from hardware.ControllerInterface import VirtualControllerInterface
+
 from Ball import Ball
 from Paddle import Paddle
 from Display import Display
@@ -14,6 +19,8 @@ from Player import *
 
 
 class Pong:
+
+
     MAX_SCORE = 30
     PHYSICS_SPEED = 1.0
     DISPLAY_WINNER_DURATION = 4.0
@@ -25,7 +32,11 @@ class Pong:
         self._gameWon = False
         self._gameWonTime_s = 0.0
 
-        self._controllerInterface = ControllerInterface()
+        if(PLATFORM_PI):
+            self._controllerInterface = HardwareControllerInterface()
+        else:
+            self._controllerInterface = VirtualControllerInterface()
+
         self._display = Display()
         dims = self._display.windowDims
         self._player1 = Player(Side.LEFT, dims)
@@ -63,8 +74,6 @@ class Pong:
 
 
     def _handleInput(self):
-        # Get data from hardware and populate all fields in the player's controllers
-        # TODO: Get correct data from controllers
         self._controllerInterface.update(self._dt)
 
         # Player 1 controller
@@ -74,13 +83,9 @@ class Pong:
         self._player1.updateControllerState(P1_dialRot_0_1, P1_LButtonDown, P1_RButtonDown)
 
         # Player 2 controller
-        if(AUTO_CONTROL_RIGHT):
-            P2_dialRot_0_1 = ((math.sin(self._time_s * 5.0 + 4.0) + 1.0) / 2)
-        else:
-            P2_dialRot_0_1 = self._controllerInterface.getDial2Pos()
-
+        P2_dialRot_0_1 = self._controllerInterface.getDial2Pos()
         P2_LButtonDown = self._controllerInterface.isCon2But1Down()
-        P2_RButtonDown = self._controllerInterface.isCon2But2Down()#True if ((math.sin(self._time_s * 1.2) + 1) / 2) > 0.8 else False
+        P2_RButtonDown = self._controllerInterface.isCon2But2Down()
         self._player2.updateControllerState(P2_dialRot_0_1, P2_LButtonDown, P2_RButtonDown)
 
 

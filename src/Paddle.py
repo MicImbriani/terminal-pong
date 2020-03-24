@@ -7,6 +7,7 @@ class Paddle:
 
 
     GRIP = 1.0
+    DEFAULT_SIZE = 4.0
 
 
     class SizeBoost:
@@ -16,64 +17,64 @@ class Paddle:
 
         def __init__(self):
             self._active = False
-            self._startTime = 0.0
-            self._activationCount = 0
+            self._start_time = 0.0
+            self._activation_count = 0
 
 
-    def __init__(self, side, windowDims):
-        self._defaultSize = 4.0
-        self._size = self._defaultSize
-        self._lastSize = self._defaultSize
-        self._verticalVel = 0
-        self._sizeBoost = Paddle.SizeBoost()
+    def __init__(self, side, window_dims):
+        self._size = Paddle.DEFAULT_SIZE
+        self._last_size = Paddle.DEFAULT_SIZE
+        self._vertical_vel = 0
+        self._size_boost = Paddle.SizeBoost()
 
-        paddleXPos = 3 if side == Side.LEFT else windowDims[0] - 3
-        self._pos = np.array([paddleXPos, windowDims[1] / 2], dtype=float)
-        self._lastPos = np.array(self._pos, dtype = float)
+        paddle_x_pos = 3 if side == Side.LEFT else window_dims[0] - 3
+        self._pos = np.array([paddle_x_pos, window_dims[1] / 2], dtype=float)
+        self._last_pos = np.array(self._pos, dtype = float)
 
 
     def update(self, dt):
-        self._verticalVel = (self._pos[1] - self._lastPos[1]) / dt
+        self._vertical_vel = (self._pos[1] - self._last_pos[1]) / dt
 
         # Disable the paddle size boost after 15 seconds
-        if(self._sizeBoost._active):
-            self.size = self._defaultSize * 2
+        if(self._size_boost._active):
+            self.size = Paddle.DEFAULT_SIZE * 2
 
-            currentTime = timer()
-            if(currentTime - self._sizeBoost._startTime > Paddle.SizeBoost.DURATION):
-                self._resetSize()
-                self._sizeBoost._active = False
+            current_time = timer()
+            if(current_time - self._size_boost._start_time > Paddle.SizeBoost.DURATION):
+                self._reset_size()
+                self._size_boost._active = False
         else:
-            self.size = self._defaultSize
+            self.size = Paddle.DEFAULT_SIZE
 
 
-    def _resetSize(self):
-        self._lastSize = self._size
-        self._size = self._defaultSize
+    def _reset_size(self):
+        self._last_size = self._size
+        self._size = Paddle.DEFAULT_SIZE
 
 
-    def activateDoubleSize(self):
-        if((not self._sizeBoost._active) and self._sizeBoost._activationCount < Paddle.SizeBoost.MAX_ACTIVATIONS):
-            self._sizeBoost._active = True
-            self._sizeBoost._startTime = timer()
-            self._sizeBoost._activationCount += 1
+    def activate_double_size(self):
+        if((not self._size_boost._active) and self._size_boost._activation_count < Paddle.SizeBoost.MAX_ACTIVATIONS):
+            self._size_boost._active = True
+            self._size_boost._start_time = timer()
+            self._size_boost._activation_count += 1
 
 
-    def setVerticalPos(self, verticalPos, winHeight):
+    def setVerticalPos(self, vertical_pos, win_height):
         # Vertically clamp the paddle within the window
-        newVerticalPos = verticalPos
-        if(newVerticalPos - (self._size / 2) < 0):
-            newVerticalPos = (self._size / 2)
-        elif(newVerticalPos + (self._size / 2) > winHeight):
-            newVerticalPos = winHeight - (self._size / 2)
+        new_vertical_pos = vertical_pos
+
+        if(new_vertical_pos - (self._size / 2) < 0):
+            new_vertical_pos = (self._size / 2)
+        elif(new_vertical_pos + (self._size / 2) > win_height):
+            new_vertical_pos = win_height - (self._size / 2)
 
         # Update position
-        self._lastPos[1] = self._pos[1]
-        self._pos[1] = newVerticalPos
+        self._last_pos[1] = self._pos[1]
+        self._pos[1] = new_vertical_pos
 
 
     def isSizeBoostActive(self):
-        return self._sizeBoost._active
+        return self._vertical_vel._active
 
 
     @property
@@ -83,12 +84,12 @@ class Paddle:
 
     @property
     def lastPosition(self):
-        return self._lastPosition
+        return self._last_position
 
 
     @property
     def verticalVelocity(self):
-        return self._verticalVel
+        return self._vertical_vel
 
 
     @property
@@ -98,10 +99,10 @@ class Paddle:
 
     @size.setter
     def size(self, size):
-        self._lastSize = self._size
+        self._last_size = self._size
         self._size = size
 
 
     @property
     def lastSize(self):
-        return self._lastSize
+        return self._last_size

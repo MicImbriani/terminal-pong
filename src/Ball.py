@@ -16,8 +16,8 @@ class Ball:
         self._position = np.array([float(dimsX) / 2, 0.0], dtype=float)
         self._lastPosition = self._position
         self._velocity = np.array([0.0, 0.0], dtype=float)
-        self._wallCollisionSide = False
-        self._collisionSide = Side.LEFT
+        self._collidingWithSideWall = False
+        self._wallCollisionSide = Side.LEFT
 
 
     def update(self, winDims, paddles, dt):
@@ -127,7 +127,7 @@ class Ball:
 
     @property
     def collidingWithSideWall(self):
-        return self._collidingWithWall
+        return self._collidingWithSideWall
 
 
     @property
