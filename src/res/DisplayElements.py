@@ -74,10 +74,10 @@ digits = [
 ]
 
 # The message displayed on the winning screen, compressed
-winTextWidth = 35
-winTextHeight = 17
+win_text_width = 35
+win_text_height = 17
 
-winText_RLE = [
+win_text_rle = [
     4, 2, 1, 6, 3, 2, 1, 3, 1, 1, 5, 1, 4, 1, 1, 3, 1, 1, 1, 5, 1, 3, 1, 
     1, 1, 3, 1, 1, 1, 5, 1, 3, 5, 2, 1, 5, 5, 2, 1, 1, 1, 2, 4, 2, 4, 1, 
     1, 5, 1, 5, 1, 3, 1, 3, 1, 3, 1, 5, 1, 3, 2, 5, 5, 1, 1, 3, 1, 3, 1, 
