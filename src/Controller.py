@@ -11,7 +11,7 @@ class Controller:
 
 
     def is_button_down(self, side):
-        return self._buttons_down[int(side)]
+        return self._buttons_down[side]
 
 
     @property

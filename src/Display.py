@@ -105,7 +105,7 @@ class Display:
 
 
     def draw_win_screen(self, player):
-        startPos_tl = np.array([(self._window_dims[0] - win_text_width) // 2, (self._window_dims[1] - win_text_height) // 2])
+        start_pos_tl = np.array([(self._window_dims[0] - win_text_width) // 2, (self._window_dims[1] - win_text_height) // 2])
         counter = 0
 
         for i in range(0, len(win_text_rle)):

@@ -1,4 +1,5 @@
 from timeit import default_timer as timer
+import random
 import time
 import math
 from Constants import *
@@ -90,7 +91,7 @@ class VirtualControllerInterface():
 
 
     def is_con1_but1_down(self):
-        return self._time_s > 3.0 and self._time_s < 6.0
+        return random.uniform(0, 1) < 0.005
 
 
     def is_con1_but2_down(self):
@@ -98,7 +99,7 @@ class VirtualControllerInterface():
 
 
     def is_con2_but1_down(self):
-        return self._time_s > 3.0 and self._time_s < 6.0
+        return random.random() < 0.005
 
 
     def is_con2_but2_down(self):
@@ -106,7 +107,7 @@ class VirtualControllerInterface():
 
 
     def get_dial1_pos(self):
-        return ((math.sin(self._time_s * 2.0 + 4.0) + 1.0) / 2)
+        return ((math.sin(self._time_s * 5.0 + 4.0) + 1.0) / 2)
 
 
     def get_dial2_pos(self):

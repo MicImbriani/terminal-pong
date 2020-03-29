@@ -50,8 +50,8 @@ class Player:
 
     def update_controller_state(self, dial_pos_0_1, left_button_down, right_button_down):
         self._controller._dial_position_0_1 = dial_pos_0_1
-        self._controller._buttons_down[int(Side.LEFT)] = left_button_down
-        self._controller._buttons_down[int(Side.RIGHT)] = right_button_down
+        self._controller._buttons_down[Side.LEFT] = left_button_down
+        self._controller._buttons_down[Side.RIGHT] = right_button_down
     
 
     def set_as_serving(self):

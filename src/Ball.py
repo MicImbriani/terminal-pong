@@ -45,7 +45,7 @@ class Ball:
         if(self._position[0] < 0):
             self._position[0] = 0
             self._velocity = np.array([0.0, 0.0])
-            self._collision_side = Side.LEFT
+            self._wall_collision_side = Side.LEFT
 
             if(self._last_position[0] >= 0):
                 self._colliding_with_side_wall = True
@@ -54,7 +54,7 @@ class Ball:
         elif(self._position[0] > win_dims[0] - 1):
             self._position[0] = win_dims[0] - 1
             self._velocity = np.array([0.0, 0.0])
-            self._collision_side = Side.RIGHT
+            self._wall_collision_side = Side.RIGHT
 
             if(self._last_position[0] <= win_dims[0] - 1):
                 self._colliding_with_side_wall = True
@@ -133,7 +133,7 @@ class Ball:
 
     @property
     def wall_collision_side(self):
-        return int(self._wall_collision_side)
+        return self._wall_collision_side
 
 
     @property
