@@ -1,0 +1,185 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+AUTO_CONTROL_RIGHT	src/Constants.py	/^AUTO_CONTROL_RIGHT = True$/;"	v
+BALL_CHARACTER	src/Display.py	/^    BALL_CHARACTER = ' '$/;"	v	class:Display
+Ball	src/Ball.py	/^class Ball:$/;"	c
+Button	src/Button.py	/^class Button:$/;"	c
+COLOURS	src/Colours.py	/^COLOURS = {$/;"	v
+Controller	src/Controller.py	/^class Controller:$/;"	c
+DEFAULT_SIZE	src/Paddle.py	/^    DEFAULT_SIZE = 4.0$/;"	v	class:Paddle
+DISPLAY_WINNER_DURATION	src/pong.py	/^    DISPLAY_WINNER_DURATION = 4.0$/;"	v	class:Pong
+DURATION	src/Paddle.py	/^        DURATION = 15.0$/;"	v	class:Paddle.SizeBoost
+Display	src/Display.py	/^class Display:$/;"	c
+FONT_CHAR_HEIGHT	src/Display.py	/^    FONT_CHAR_HEIGHT = 5$/;"	v	class:Display
+FONT_CHAR_WIDTH	src/Display.py	/^    FONT_CHAR_WIDTH = 3$/;"	v	class:Display
+GPIO	src/Button.py	/^    import RPi.GPIO as GPIO$/;"	I
+GPIO	src/RotatingDial.py	/^    import RPi.GPIO as GPIO$/;"	I
+GPIO	src/hardware/LEDDisplay.py	/^    import RPi.GPIO as GPIO$/;"	I
+GPIOButton	src/Button.py	/^class GPIOButton(Button):$/;"	c
+GPIODial	src/RotatingDial.py	/^class GPIODial():$/;"	c
+GPIO_BUZZER	src/hardware/GPIO_Map.py	/^GPIO_BUZZER = 15$/;"	v
+GPIO_CON_1_BUT_1	src/hardware/GPIO_Map.py	/^GPIO_CON_1_BUT_1 = 10$/;"	v
+GPIO_CON_1_BUT_2	src/hardware/GPIO_Map.py	/^GPIO_CON_1_BUT_2 = 9$/;"	v
+GPIO_CON_2_BUT_1	src/hardware/GPIO_Map.py	/^GPIO_CON_2_BUT_1 = 11$/;"	v
+GPIO_CON_2_BUT_2	src/hardware/GPIO_Map.py	/^GPIO_CON_2_BUT_2 = 14$/;"	v
+GRIP	src/Paddle.py	/^    GRIP = 1.0$/;"	v	class:Paddle
+HardwareControllerInterface	src/hardware/ControllerInterface.py	/^class HardwareControllerInterface:$/;"	c
+I2CButton	src/Button.py	/^class I2CButton(Button):$/;"	c
+I2C_ADDR	src/hardware/LEDDisplay.py	/^    I2C_ADDR = 0x38$/;"	v	class:LEDDisplay
+LEDDisplay	src/hardware/LEDDisplay.py	/^class LEDDisplay:$/;"	c
+LEDS_USED	src/Constants.py	/^LEDS_USED = True$/;"	v
+LED_OFF	src/hardware/LEDDisplay.py	/^    LED_OFF = 0xFF$/;"	v	class:LEDDisplay
+LED_ON	src/hardware/LEDDisplay.py	/^    LED_ON = 0x0F$/;"	v	class:LEDDisplay
+LEFT	src/Constants.py	/^    LEFT = 0$/;"	v	class:Side
+MAX_ACTIVATIONS	src/Paddle.py	/^        MAX_ACTIVATIONS = 2$/;"	v	class:Paddle.SizeBoost
+MAX_SCORE	src/pong.py	/^    MAX_SCORE = 30$/;"	v	class:Pong
+MAX_SPEED	src/Ball.py	/^    MAX_SPEED = 60$/;"	v	class:Ball
+PHYSICS_SPEED	src/pong.py	/^    PHYSICS_SPEED = 1.0$/;"	v	class:Pong
+PLATFORM_PI	src/Constants.py	/^PLATFORM_PI = False$/;"	v
+POLL_INTERVAL	src/Button.py	/^    POLL_INTERVAL = 1.0 \/ 60.0$/;"	v	class:Button
+PRINT_TO_TERMINAL	src/Constants.py	/^PRINT_TO_TERMINAL = True$/;"	v
+Paddle	src/Paddle.py	/^class Paddle:$/;"	c
+Player	src/Player.py	/^class Player:$/;"	c
+Pong	src/pong.py	/^class Pong:$/;"	c
+RANDOM_SPEED_AFTER_COLLISION	src/Ball.py	/^    RANDOM_SPEED_AFTER_COLLISION = True$/;"	v	class:Ball
+RIGHT	src/Constants.py	/^    RIGHT = 1$/;"	v	class:Side
+SERIAL_ADDR	src/Display.py	/^    SERIAL_ADDR = "\/dev\/ttyAMA0"$/;"	v	class:Display
+SERIAL_BAUD_RATE	src/Display.py	/^    SERIAL_BAUD_RATE = 115200$/;"	v	class:Display
+SPIN_AFTER_COLLISION	src/Ball.py	/^    SPIN_AFTER_COLLISION = True$/;"	v	class:Ball
+Screen	src/Screen.py	/^class Screen:$/;"	c
+Side	src/Constants.py	/^class Side:$/;"	c
+SizeBoost	src/Paddle.py	/^    class SizeBoost:$/;"	c	class:Paddle
+VirtualControllerInterface	src/hardware/ControllerInterface.py	/^class VirtualControllerInterface():$/;"	c
+__init__	src/Ball.py	/^    def __init__(self, dims_x):$/;"	m	class:Ball
+__init__	src/Button.py	/^    def __init__(self):$/;"	m	class:Button
+__init__	src/Button.py	/^    def __init__(self, GPIO_PIN):$/;"	m	class:GPIOButton
+__init__	src/Button.py	/^    def __init__(self, switch_value):$/;"	m	class:I2CButton
+__init__	src/Controller.py	/^    def __init__(self):$/;"	m	class:Controller
+__init__	src/Display.py	/^    def __init__(self):$/;"	m	class:Display
+__init__	src/Paddle.py	/^        def __init__(self):$/;"	m	class:Paddle.SizeBoost
+__init__	src/Paddle.py	/^    def __init__(self, side, window_dims):$/;"	m	class:Paddle
+__init__	src/Player.py	/^    def __init__(self, side, window_dims):$/;"	m	class:Player
+__init__	src/RotatingDial.py	/^    def __init__(self):$/;"	m	class:GPIODial
+__init__	src/Screen.py	/^    def __init__(self, dims):$/;"	m	class:Screen
+__init__	src/hardware/ControllerInterface.py	/^    def __init__(self):$/;"	m	class:HardwareControllerInterface
+__init__	src/hardware/ControllerInterface.py	/^    def __init__(self):$/;"	m	class:VirtualControllerInterface
+__init__	src/hardware/LEDDisplay.py	/^    def __init__(self):$/;"	m	class:LEDDisplay
+__init__	src/pong.py	/^    def __init__(self):$/;"	m	class:Pong
+_calc_norm_vel	src/Ball.py	/^    def _calc_norm_vel(self):$/;"	m	class:Ball
+_calc_speed	src/Ball.py	/^    def _calc_speed(self):$/;"	m	class:Ball
+_check_in_range	src/Screen.py	/^    def _check_in_range(self, pos_xy):$/;"	m	class:Screen
+_check_win_condition	src/pong.py	/^    def _check_win_condition(self):$/;"	m	class:Pong
+_clamp_speed_below_maximum	src/Ball.py	/^    def _clamp_speed_below_maximum(self):$/;"	m	class:Ball
+_draw	src/pong.py	/^    def _draw(self):$/;"	m	class:Pong
+_draw_7_seg_number	src/Display.py	/^    def _draw_7_seg_number(self, num, pos_centre):$/;"	m	class:Display
+_handle_collision	src/Ball.py	/^    def _handle_collision(self, paddles, win_dims):$/;"	m	class:Ball
+_handle_input	src/pong.py	/^    def _handle_input(self):$/;"	m	class:Pong
+_handle_paddle_collision	src/Ball.py	/^    def _handle_paddle_collision(self, paddles):$/;"	m	class:Ball
+_handle_wall_collision	src/Ball.py	/^    def _handle_wall_collision(self, win_dims):$/;"	m	class:Ball
+_initialise	src/pong.py	/^    def _initialise(self):$/;"	m	class:Pong
+_initialize	src/hardware/LEDDisplay.py	/^    def _initialize(self):$/;"	m	class:LEDDisplay
+_print_debug_info	src/pong.py	/^    def _print_debug_info(self):$/;"	m	class:Pong
+_reset_size	src/Paddle.py	/^    def _reset_size(self):$/;"	m	class:Paddle
+_shutdown	src/pong.py	/^    def _shutdown(self):$/;"	m	class:Pong
+_update	src/pong.py	/^    def _update(self, window_dims):$/;"	m	class:Pong
+_updateScores	src/pong.py	/^    def _updateScores(self):$/;"	m	class:Pong
+_update_position	src/Ball.py	/^    def _update_position(self, dt):$/;"	m	class:Ball
+_update_state_change_timer	src/Button.py	/^    def _update_state_change_timer(self, delta):$/;"	m	class:Button
+_update_vertical_vel_after_paddle_collision	src/Ball.py	/^    def _update_vertical_vel_after_paddle_collision(self, colliding_paddle):$/;"	m	class:Ball
+activate_double_size	src/Paddle.py	/^    def activate_double_size(self):$/;"	m	class:Paddle
+ascii_pong	README.md	/^# ascii_pong$/;"	c
+begin	src/Display.py	/^    def begin(self):$/;"	m	class:Display
+buttons_down	src/Controller.py	/^    def buttons_down(self):$/;"	m	class:Controller
+clear	src/Screen.py	/^    def clear(self):$/;"	m	class:Screen
+close	src/Display.py	/^    def close(self):$/;"	m	class:Display
+colliding_with_side_wall	src/Ball.py	/^    def colliding_with_side_wall(self):$/;"	m	class:Ball
+colour_change_code	src/DrawingUtils.py	/^def colour_change_code(colour):$/;"	f
+colour_reset_code	src/DrawingUtils.py	/^def colour_reset_code():$/;"	f
+controller	src/Player.py	/^    def controller(self):$/;"	m	class:Player
+cursor_reset_code	src/DrawingUtils.py	/^def cursor_reset_code():$/;"	f
+cursor_visibilty_code	src/DrawingUtils.py	/^def cursor_visibilty_code(is_hidden):$/;"	f
+dial_position_0_1	src/Controller.py	/^    def dial_position_0_1(self):$/;"	m	class:Controller
+digits	src/res/DisplayElements.py	/^digits = [$/;"	v
+draw_background	src/Display.py	/^    def draw_background(self):$/;"	m	class:Display
+draw_ball	src/Display.py	/^    def draw_ball(self, ball):$/;"	m	class:Display
+draw_net	src/Display.py	/^    def draw_net(self):$/;"	m	class:Display
+draw_player	src/Display.py	/^    def draw_player(self, player):$/;"	m	class:Display
+draw_score	src/Display.py	/^    def draw_score(self, score, pos_centre):$/;"	m	class:Display
+draw_win_screen	src/Display.py	/^    def draw_win_screen(self, player):$/;"	m	class:Display
+end	src/Display.py	/^    def end(self):$/;"	m	class:Display
+get_dial1_pos	src/hardware/ControllerInterface.py	/^    def get_dial1_pos(self):$/;"	m	class:HardwareControllerInterface
+get_dial1_pos	src/hardware/ControllerInterface.py	/^    def get_dial1_pos(self):$/;"	m	class:VirtualControllerInterface
+get_dial2_pos	src/hardware/ControllerInterface.py	/^    def get_dial2_pos(self):$/;"	m	class:HardwareControllerInterface
+get_dial2_pos	src/hardware/ControllerInterface.py	/^    def get_dial2_pos(self):$/;"	m	class:VirtualControllerInterface
+get_instant_value	src/RotatingDial.py	/^    def get_instant_value(self):$/;"	m	class:GPIODial
+get_output_string	src/Screen.py	/^    def get_output_string(self):$/;"	m	class:Screen
+increment_score	src/Player.py	/^    def increment_score(self):$/;"	m	class:Player
+is_button_down	src/Controller.py	/^    def is_button_down(self, side):$/;"	m	class:Controller
+is_con1_but1_down	src/hardware/ControllerInterface.py	/^    def is_con1_but1_down(self):$/;"	m	class:HardwareControllerInterface
+is_con1_but1_down	src/hardware/ControllerInterface.py	/^    def is_con1_but1_down(self):$/;"	m	class:VirtualControllerInterface
+is_con1_but2_down	src/hardware/ControllerInterface.py	/^    def is_con1_but2_down(self):$/;"	m	class:HardwareControllerInterface
+is_con1_but2_down	src/hardware/ControllerInterface.py	/^    def is_con1_but2_down(self):$/;"	m	class:VirtualControllerInterface
+is_con2_but1_down	src/hardware/ControllerInterface.py	/^    def is_con2_but1_down(self):$/;"	m	class:HardwareControllerInterface
+is_con2_but1_down	src/hardware/ControllerInterface.py	/^    def is_con2_but1_down(self):$/;"	m	class:VirtualControllerInterface
+is_con2_but2_down	src/hardware/ControllerInterface.py	/^    def is_con2_but2_down(self):$/;"	m	class:HardwareControllerInterface
+is_con2_but2_down	src/hardware/ControllerInterface.py	/^    def is_con2_but2_down(self):$/;"	m	class:VirtualControllerInterface
+is_down	src/Button.py	/^    def is_down(self):$/;"	m	class:Button
+is_down	src/Button.py	/^    def is_down(self, new_state):$/;"	m	class:Button
+is_serving	src/Player.py	/^    def is_serving(self):$/;"	m	class:Player
+is_size_boost_active	src/Paddle.py	/^    def is_size_boost_active(self):$/;"	m	class:Paddle
+last_position	src/Ball.py	/^    def last_position(self):$/;"	m	class:Ball
+last_position	src/Paddle.py	/^    def last_position(self):$/;"	m	class:Paddle
+last_size	src/Paddle.py	/^    def last_size(self):$/;"	m	class:Paddle
+main	src/pong.py	/^def main():$/;"	f
+move_cursor_code	src/DrawingUtils.py	/^def move_cursor_code(pos_xy, window_dims):$/;"	f
+net_pos_x	src/Display.py	/^    def net_pos_x(self):$/;"	m	class:Display
+np	src/Ball.py	/^import numpy as np$/;"	I
+np	src/Display.py	/^import numpy as np$/;"	I
+np	src/DrawingUtils.py	/^import numpy as np$/;"	I
+np	src/Paddle.py	/^import numpy as np$/;"	I
+np	src/Player.py	/^import numpy as np$/;"	I
+np	src/pong.py	/^import numpy as np$/;"	I
+paddle	src/Player.py	/^    def paddle(self):$/;"	m	class:Player
+position	src/Ball.py	/^    def position(self):$/;"	m	class:Ball
+position	src/Ball.py	/^    def position(self, pos):$/;"	m	class:Ball
+position	src/Paddle.py	/^    def position(self):$/;"	m	class:Paddle
+print_output	src/Display.py	/^    def print_output(self, str):$/;"	m	class:Display
+run	src/pong.py	/^    def run(self):$/;"	m	class:Pong
+score	src/Player.py	/^    def score(self):$/;"	m	class:Player
+set_as_serving	src/Player.py	/^    def set_as_serving(self):$/;"	m	class:Player
+set_colour_idx_at	src/Screen.py	/^    def set_colour_idx_at(self, colour_idx, pos_xy):$/;"	m	class:Screen
+set_leds	src/hardware/LEDDisplay.py	/^    def set_leds(self, ball_pos):$/;"	m	class:LEDDisplay
+set_vertical_pos	src/Paddle.py	/^    def set_vertical_pos(self, vertical_pos, win_height):$/;"	m	class:Paddle
+side	src/Player.py	/^    def side(self):$/;"	m	class:Player
+size	src/Paddle.py	/^    def size(self):$/;"	m	class:Paddle
+size	src/Paddle.py	/^    def size(self, size):$/;"	m	class:Paddle
+state_change_timer	src/Button.py	/^    def state_change_timer(self):$/;"	m	class:Button
+swap_buffers	src/Screen.py	/^    def swap_buffers(self):$/;"	m	class:Screen
+timer	src/Paddle.py	/^from timeit import default_timer as timer$/;"	x
+timer	src/Player.py	/^from timeit import default_timer as timer$/;"	x
+timer	src/hardware/ControllerInterface.py	/^from timeit import default_timer as timer$/;"	x
+timer	src/pong.py	/^from timeit import default_timer as timer$/;"	x
+turn_off_all	src/hardware/LEDDisplay.py	/^    def turn_off_all(self):$/;"	m	class:LEDDisplay
+update	src/Ball.py	/^    def update(self, win_dims, paddles, dt):$/;"	m	class:Ball
+update	src/Button.py	/^    def update(self, dt_s):$/;"	m	class:GPIOButton
+update	src/Button.py	/^    def update(self, dt_s):$/;"	m	class:I2CButton
+update	src/Paddle.py	/^    def update(self, dt):$/;"	m	class:Paddle
+update	src/Player.py	/^    def update(self, ball, window_height, dt):$/;"	m	class:Player
+update	src/RotatingDial.py	/^    def update(self):$/;"	m	class:GPIODial
+update	src/hardware/ControllerInterface.py	/^    def update(self, time_s):$/;"	m	class:HardwareControllerInterface
+update	src/hardware/ControllerInterface.py	/^    def update(self, time_s):$/;"	m	class:VirtualControllerInterface
+update_controller_state	src/Player.py	/^    def update_controller_state(self, dial_pos_0_1, left_button_down, right_button_down):$/;"	m	class:Player
+velocity	src/Ball.py	/^    def velocity(self):$/;"	m	class:Ball
+velocity	src/Ball.py	/^    def velocity(self, velocity):$/;"	m	class:Ball
+vertical_velocity	src/Paddle.py	/^    def vertical_velocity(self):$/;"	m	class:Paddle
+wall_collision_side	src/Ball.py	/^    def wall_collision_side(self):$/;"	m	class:Ball
+win_text_height	src/res/DisplayElements.py	/^win_text_height = 17$/;"	v
+win_text_rle	src/res/DisplayElements.py	/^win_text_rle = [$/;"	v
+win_text_width	src/res/DisplayElements.py	/^win_text_width = 35$/;"	v
+window_dims	src/Display.py	/^    def window_dims(self):$/;"	m	class:Display

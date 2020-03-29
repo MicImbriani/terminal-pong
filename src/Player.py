@@ -30,12 +30,13 @@ class Player:
         if(self._is_serving):
             # Left faces into court with +X, right with -X
             xDir = -1 if self._side == Side.RIGHT else 1
-            ball.pos = np.array([self._paddle.position[0] + (1 * xDir), self._paddle.position[1]])
+            ball.position = np.array([self._paddle.position[0] + (1 * xDir), self._paddle.position[1]])
             ball.velocity = np.array([0, 0])
 
             # Release ball
             if(self._controller.is_button_down(Side.LEFT)):
                 self._is_serving = False
+                ball.velocity = np.array([50, self._paddle.vertical_velocity])
                 ball.velocity = np.array([self._serve_speed, self._paddle.vertical_velocity])
 
         # Paddle size boost
@@ -75,3 +76,8 @@ class Player:
     @property
     def is_serving(self):
         return self._is_serving
+
+
+    @property
+    def controller(self):
+        return self._controller

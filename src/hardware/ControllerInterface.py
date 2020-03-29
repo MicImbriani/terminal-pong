@@ -90,7 +90,7 @@ class VirtualControllerInterface():
 
 
     def is_con1_but1_down(self):
-        return False
+        return self._time_s > 3.0 and self._time_s < 6.0
 
 
     def is_con1_but2_down(self):
@@ -98,7 +98,7 @@ class VirtualControllerInterface():
 
 
     def is_con2_but1_down(self):
-        return False
+        return self._time_s > 3.0 and self._time_s < 6.0
 
 
     def is_con2_but2_down(self):

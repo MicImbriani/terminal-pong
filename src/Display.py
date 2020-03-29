@@ -100,13 +100,14 @@ class Display:
 
 
     def draw_ball(self, ball):
-        pos = np.around(ball.pos).astype(int)
+        pos = np.around(ball.position).astype(int)
         self._screen.set_colour_idx_at(list(COLOURS.keys()).index("ball"), pos)
 
 
     def draw_win_screen(self, player):
         startPos_tl = np.array([(self._window_dims[0] - win_text_width) // 2, (self._window_dims[1] - win_text_height) // 2])
         counter = 0
+
         for i in range(0, len(win_text_rle)):
             if(i % 2 == 0):
                 for j in range(0, win_text_rle[i]):

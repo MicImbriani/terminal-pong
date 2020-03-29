@@ -1,4 +1,5 @@
 import numpy as np
+import warnings
 from timeit import default_timer as timer
 from Constants import Side
 
@@ -33,7 +34,9 @@ class Paddle:
 
 
     def update(self, dt):
-        self._vertical_vel = (self._pos[1] - self._last_pos[1]) / dt
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=RuntimeWarning)
+            self._vertical_vel = (self._pos[1] - self._last_pos[1]) / dt
 
         # Disable the paddle size boost after 15 seconds
         if(self._size_boost._active):
@@ -74,7 +77,7 @@ class Paddle:
 
 
     def is_size_boost_active(self):
-        return self._vertical_vel._active
+        return self._size_boost._active
 
 
     @property

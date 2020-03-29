@@ -44,7 +44,7 @@ class Pong:
         self._ball = Ball(dims[0] / 2)
 
         self._serve_count = 0
-        self._serving_player = self._player_1
+        self._serving_player = self._player_2
         self._winning_player = self._player_1
 
 
@@ -173,26 +173,26 @@ class Pong:
         for line_idx in range(len(lines)):
             output += move_cursor_code([1, line_idx + 1], w) + lines[line_idx]
 
-        ball_vel = self._ball.getVel()
+        ball_vel = self._ball.velocity
         paddles = [self._player_1.paddle, self._player_2.paddle]
         controllers = [self._player_1.controller, self._player_2.controller]
 
         print(output % (
             "DOWN" if controllers[0].is_button_down(Side.LEFT) else "UP",
             "DOWN" if controllers[0].is_button_down(Side.RIGHT) else "UP",
-            controllers[0].get_dial_position_0_1(),
-            paddles[0].get_pos()[1],
-            paddles[0].get_vertical_Vel(),
-            paddles[0].get_size(),
+            controllers[0].dial_position_0_1,
+            paddles[0].position[1],
+            paddles[0].vertical_velocity,
+            paddles[0].size,
             "DOUBLE" if paddles[0].is_size_boost_active() else "NORMAL",
             "DOWN" if controllers[1].is_button_down(Side.LEFT) else "UP",
             "DOWN" if controllers[1].is_button_down(Side.RIGHT) else "UP",
-            controllers[1].get_dial_position_0_1(),
-            paddles[1].get_pos()[1],
-            paddles[1].get_vertical_Vel(),
-            paddles[1].get_size(),
+            controllers[1].dial_position_0_1,
+            paddles[1].position[1],
+            paddles[1].vertical_velocity,
+            paddles[1].size,
             "DOUBLE" if paddles[1].is_size_boost_active() else "NORMAL",
-            self._ball.pos[0], self._ball.pos[1],
+            self._ball.position[0], self._ball.position[1],
             ball_vel[0], ball_vel[1])
         )
 
@@ -204,8 +204,8 @@ class Pong:
         dims_x = self._display.window_dims[0]
         if(not self._game_won):
             self._display.draw_net()
-            self._display.draw_score(self._player_2.score, [int(dims_x * 0.75), 4])
             self._display.draw_score(self._player_1.score, [int(dims_x * 0.25), 4])
+            self._display.draw_score(self._player_2.score, [int(dims_x * 0.75), 4])
             self._display.draw_player(self._player_1)
             self._display.draw_player(self._player_2)
             self._display.draw_ball(self._ball)

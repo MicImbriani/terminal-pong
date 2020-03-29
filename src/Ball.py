@@ -2,6 +2,7 @@ import numpy as np
 import math
 import random
 from Constants import *
+from Paddle import Paddle
 
 
 class Ball:
@@ -27,7 +28,7 @@ class Ball:
 
 
     def _update_position(self, dt):
-        self._lastPos = np.array(self._position)
+        self._last_position = np.array(self._position)
         self._position[0] += self._velocity[0] * dt
         self._position[1] += (self._velocity[1] * dt) / 2
 
@@ -38,7 +39,7 @@ class Ball:
 
 
     def _handle_wall_collision(self, win_dims):
-        self._colliding_with_wall = False
+        self._colliding_with_side_wall = False
 
         # Left
         if(self._position[0] < 0):
@@ -46,8 +47,8 @@ class Ball:
             self._velocity = np.array([0.0, 0.0])
             self._collision_side = Side.LEFT
 
-            if(self._lastPos[0] >= 0):
-                self._colliding_with_wall = True
+            if(self._last_position[0] >= 0):
+                self._colliding_with_side_wall = True
 
         # Right
         elif(self._position[0] > win_dims[0] - 1):
@@ -55,8 +56,8 @@ class Ball:
             self._velocity = np.array([0.0, 0.0])
             self._collision_side = Side.RIGHT
 
-            if(self._lastPos[0] <= win_dims[0] - 1):
-                self._colliding_with_wall = True
+            if(self._last_position[0] <= win_dims[0] - 1):
+                self._colliding_with_side_wall = True
 
         # Bottom
         if(self._position[1] < 0):
@@ -93,16 +94,16 @@ class Ball:
 
         # Adds some interesting spin effects to the ball after a collision
         if(left_collision or right_collision):
-            self._update_vertical_vel_after_paddle_collision()
+            self._update_vertical_vel_after_paddle_collision(colliding_paddle)
 
 
-    def _update_vertical_vel_after_paddle_collision(self):
+    def _update_vertical_vel_after_paddle_collision(self, colliding_paddle):
         # Inherit some of the paddle's vertical velocity allowing for 'chop' effects
-        if(SPIN_AFTER_COLLISION):
-            self._velocity[1] += colliding_paddle.get_vertical_vel() * PADDLE_STICKINESS
+        if(Ball.SPIN_AFTER_COLLISION):
+            self._velocity[1] += colliding_paddle.vertical_velocity * Paddle.GRIP
 
         # Applys a random speed to the ball
-        if(RANDOM_SPEED_AFTER_COLLISION):
+        if(Ball.RANDOM_SPEED_AFTER_COLLISION):
             vel_norm = self._calc_norm_vel()
             random_speed = random.uniform(Ball.MAX_SPEED * 0.5, Ball.MAX_SPEED * 0.8)
             self._velocity = vel_norm * random_speed
