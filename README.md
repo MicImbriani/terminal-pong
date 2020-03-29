@@ -12,6 +12,17 @@ Each controller had a variable resistor dial and two buttons. The game had to ru
 
 ## Additional features
 * GUI scales to any terminal size
+
+<p align="center">
+   <img src="https://github.com/lbowes/ascii_pong/blob/master/gifs/small.gif">
+</p>
+
 * Player scores scale to any value
+
+<p align="center">
+   <img src="https://github.com/lbowes/ascii_pong/blob/master/gifs/high_score.gif">
+</p>
+
+
 * Spin effect added during ball and paddle collision allowing players to cancel the ball's vertical velocity
 * Floating point internal state representation
