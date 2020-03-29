@@ -1,7 +1,9 @@
-# ascii_pong
+# Terminal Pong
 An implementation of the classic 'Pong' game that runs in a terminal.
 
-TODO: Image/Gif
+<p align="center">
+   <img src="https://github.com/lbowes/ascii_pong/blob/master/gifs/gameplay.gif">
+</p>
 
 ***
 
