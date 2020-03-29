@@ -19,7 +19,6 @@ class Display:
 
     FONT_CHAR_WIDTH = 3
     FONT_CHAR_HEIGHT = 5
-    BALL_CHARACTER = ' '
     SERIAL_BAUD_RATE = 115200
     SERIAL_ADDR = "/dev/ttyAMA0"
 

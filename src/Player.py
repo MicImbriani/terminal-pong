@@ -11,7 +11,7 @@ class Player:
 
 
     def __init__(self, side, window_dims):
-        self._score = 6
+        self._score = 12345
         self._side = side
         self._paddle = Paddle(side, window_dims)
         self._controller = Controller()

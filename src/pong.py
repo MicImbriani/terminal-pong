@@ -21,7 +21,7 @@ from Player import *
 class Pong:
 
 
-    MAX_SCORE = 15
+    MAX_SCORE = 1000000
     PHYSICS_SPEED = 1.0
     DISPLAY_WINNER_DURATION = 4.0
 
