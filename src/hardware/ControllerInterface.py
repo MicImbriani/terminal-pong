@@ -91,7 +91,7 @@ class VirtualControllerInterface():
 
 
     def is_con1_but1_down(self):
-        return random.uniform(0, 1) < 0.005
+        return random.uniform(0, 1) < 0.001
 
 
     def is_con1_but2_down(self):
@@ -99,7 +99,7 @@ class VirtualControllerInterface():
 
 
     def is_con2_but1_down(self):
-        return random.random() < 0.005
+        return random.random() < 0.001
 
 
     def is_con2_but2_down(self):

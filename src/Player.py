@@ -11,12 +11,12 @@ class Player:
 
 
     def __init__(self, side, window_dims):
-        self._score = 0
+        self._score = 6
         self._side = side
         self._paddle = Paddle(side, window_dims)
         self._controller = Controller()
         self._is_serving = False
-        self._serve_speed = window_dims[0] / 3 # "Should take roughly 3 seconds to cross the screen"
+        self._serve_speed = 240#window_dims[0] / 3 # "Should take roughly 3 seconds to cross the screen"
 
 
     def update(self, ball, window_height, dt):
