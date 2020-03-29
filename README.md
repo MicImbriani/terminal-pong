@@ -14,13 +14,13 @@ Each controller had a variable resistor dial and two buttons. The game had to ru
 * GUI scales to any terminal size
 
 <p align="center">
-   <img src="https://github.com/lbowes/ascii_pong/blob/master/gifs/small.gif">
+   <img src="https://github.com/lbowes/ascii_pong/blob/master/gifs/small.png">
 </p>
 
-* Player scores scale to any value
+* Player scores scale to values with multiple digits
 
 <p align="center">
-   <img src="https://github.com/lbowes/ascii_pong/blob/master/gifs/high_score.gif">
+   <img src="https://github.com/lbowes/terminal_pong/blob/master/gifs/high_scores.png">
 </p>
 
 
