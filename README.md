@@ -1,4 +1,4 @@
-# ascii_pong
+# Terminal Pong
 An implementation of the classic 'Pong' game that runs in a terminal.
 
 <p align="center">
