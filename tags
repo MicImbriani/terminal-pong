@@ -7,6 +7,7 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	//
 AUTO_CONTROL_RIGHT	src/Constants.py	/^AUTO_CONTROL_RIGHT = True$/;"	v
+Additional features	README.md	/^## Additional features$/;"	s
 Ball	src/Ball.py	/^class Ball:$/;"	c
 Button	src/Button.py	/^class Button:$/;"	c
 COLOURS	src/Colours.py	/^COLOURS = {$/;"	v
@@ -37,7 +38,7 @@ LED_OFF	src/hardware/LEDDisplay.py	/^    LED_OFF = 0xFF$/;"	v	class:LEDDisplay
 LED_ON	src/hardware/LEDDisplay.py	/^    LED_ON = 0x0F$/;"	v	class:LEDDisplay
 LEFT	src/Constants.py	/^    LEFT = 0$/;"	v	class:Side
 MAX_ACTIVATIONS	src/Paddle.py	/^        MAX_ACTIVATIONS = 2$/;"	v	class:Paddle.SizeBoost
-MAX_SCORE	src/pong.py	/^    MAX_SCORE = 15$/;"	v	class:Pong
+MAX_SCORE	src/pong.py	/^    MAX_SCORE = 1000000$/;"	v	class:Pong
 MAX_SPEED	src/Ball.py	/^    MAX_SPEED = 80$/;"	v	class:Ball
 PHYSICS_SPEED	src/pong.py	/^    PHYSICS_SPEED = 1.0$/;"	v	class:Pong
 PLATFORM_PI	src/Constants.py	/^PLATFORM_PI = False$/;"	v
