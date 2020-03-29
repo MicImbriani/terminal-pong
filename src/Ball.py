@@ -10,7 +10,7 @@ class Ball:
 
     SPIN_AFTER_COLLISION = True
     RANDOM_SPEED_AFTER_COLLISION = True
-    MAX_SPEED = 60
+    MAX_SPEED = 80
 
 
     def __init__(self, dims_x):

@@ -91,7 +91,7 @@ class VirtualControllerInterface():
 
 
     def is_con1_but1_down(self):
-        return random.uniform(0, 1) < 0.001
+        return int(self._time_s) % 3 == 0
 
 
     def is_con1_but2_down(self):
@@ -99,7 +99,7 @@ class VirtualControllerInterface():
 
 
     def is_con2_but1_down(self):
-        return random.random() < 0.001
+        return int(self._time_s) % 3 == 0
 
 
     def is_con2_but2_down(self):
@@ -107,8 +107,8 @@ class VirtualControllerInterface():
 
 
     def get_dial1_pos(self):
-        return ((math.sin(self._time_s * 5.0 + 4.0) + 1.0) / 2)
+        return ((math.sin(self._time_s * 4.0 + 4.0) + 1.0) / 2)
 
 
     def get_dial2_pos(self):
-        return ((math.sin(self._time_s * 2.0 + 4.0) + 1.0) / 2)
+        return ((math.sin(self._time_s * 5.0 + 4.0) + 1.0) / 2)
