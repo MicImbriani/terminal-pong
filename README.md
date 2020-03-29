@@ -2,7 +2,7 @@
 An implementation of the classic 'Pong' game that runs in a terminal.
 
 <p align="center">
-   <img src="https://github.com/lbowes/ascii_pong/blob/master/gifs/gameplay.gif">
+   <img src="https://github.com/lbowes/ascii_pong/blob/master/screenshots/gameplay.gif">
 </p>
 
 ***
